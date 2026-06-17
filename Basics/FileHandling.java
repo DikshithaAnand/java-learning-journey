@@ -1,0 +1,44 @@
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
+
+public class FileHandling {
+
+    public static void main(String[] args) {
+
+        try {
+            // Create a file
+            File file = new File("sample.txt");
+
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            } else {
+                System.out.println("File already exists.");
+            }
+
+            // Write to the file
+            FileWriter writer = new FileWriter("sample.txt");
+            writer.write("Hello, Java File Handling!\n");
+            writer.write("Learning Java step by step.");
+            writer.close();
+
+            System.out.println("Successfully wrote to the file.");
+
+            // Read from the file
+            Scanner reader = new Scanner(file);
+
+            System.out.println("\nFile Content:");
+            while (reader.hasNextLine()) {
+                String data = reader.nextLine();
+                System.out.println(data);
+            }
+
+            reader.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+    }
+}
